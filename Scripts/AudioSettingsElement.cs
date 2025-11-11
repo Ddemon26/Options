@@ -73,7 +73,7 @@ namespace TCS.Options {
             };
             AcceptChangesButton.AddToClassList( AcceptChangesButtonName );
 
-            AddSetting( AcceptChangesButton, SettingsButtonName );
+            AddSetting( AcceptChangesButton, ButtonName );
 
             foreach (var labels in this.Query<Label>().ToList()) {
                 labels.AddToClassList( SettingsLabelName );

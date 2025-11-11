@@ -70,5 +70,6 @@ namespace TCS.Options {
         }
 
         public void OpenOptionMenu() => OptionsMenuElement.HandleReturnBackPressed();
+        public void OpenInGameOptionMenu() => OptionsMenuElement.HandleInGamePressed();
     }
 }
