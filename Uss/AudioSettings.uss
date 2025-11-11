@@ -1,0 +1,7 @@
+.audio-settings {
+}
+
+.audio-settings__header {
+    color: rgb(255, 255, 255);
+    margin-bottom: 15px;
+}

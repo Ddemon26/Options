@@ -1,0 +1,14 @@
+.video-settings {
+}
+
+.video-settings__header {
+    color: rgb(255, 255, 255);
+    margin-bottom: 15px;
+}
+
+.video-settings__accept-changes-button {
+}
+
+.video-settings > .options-settings__settings-container > .options-settings__toggle > .unity-toggle__input {
+    justify-content: flex-end;
+}

@@ -1,0 +1,180 @@
+:root {
+    --color-background: #05080f;
+    --color-surface: #182234;
+    --color-card: #253149;
+    --color-border: #05070b;
+    --color-text: #f5f7ff;
+    --color-text-on-light: #0b1018;
+    --color-accent: #4fb4ff;
+    --color-accent-secondary: #ff8a63;
+    --color-hover: #2f3c55;
+    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Examples%20&%20Extras/Fonts/Electronic%20Highway%20Sign.TTF?fileID=12800000&guid=8a2b9e2a607dd2143b58c44bc32410b4&type=3#Electronic Highway Sign");
+}
+
+.options-settings {
+    color: var(--color-text);
+    margin-bottom: 10px;
+    flex-grow: 1;
+}
+
+.options-settings__header-container {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 85px;
+    -unity-text-align: middle-center;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: var(--color-border);
+    border-right-color: var(--color-border);
+    border-top-color: var(--color-border);
+    border-bottom-color: var(--color-border);
+    font-size: 28px;
+    -unity-font-style: bold;
+}
+
+.options-settings__header-label {
+}
+
+.options-settings__button-container {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-surface);
+    border-radius: 20px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-left-color: var(--color-border);
+    border-right-color: var(--color-border);
+    border-top-color: var(--color-border);
+    border-bottom-color: var(--color-border);
+    flex-shrink: 0;
+    margin-top: 15%;
+    margin-right: 35%;
+    margin-bottom: 15%;
+    margin-left: 35%;
+}
+
+.options-settings__setting-button {
+    margin-bottom: 10px;
+    width: 60%;
+    font-size: 18px;
+    -unity-font-style: bold;
+}
+
+.options-settings__slider {
+    margin-bottom: 15px;
+}
+
+.options-settings__label {
+}
+
+.options-settings__toggle {
+    margin-bottom: 15px;
+}
+
+.options-settings__toggle:hover {
+    background-color: var(--color-hover);
+}
+
+.options-settings__toggle:active {
+}
+
+.options-settings__dropdown {
+    margin-bottom: 15px;
+}
+
+.options-settings__dropdown:hover {
+    background-color: var(--color-hover);
+}
+
+.options-settings__button {
+    padding: 10px 20px;
+    background-color: var(--color-accent);
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.options-settings__button:active {
+}
+
+.options-settings__button:hover {
+    background-color: var(--color-hover);
+}
+
+.options-settings__back-button-container {
+    flex-grow: 1;
+    margin-left: 70%;
+}
+
+.options-settings__back-button {
+}
+
+.options-settings__settings-container {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: var(--color-border);
+    border-right-color: var(--color-border);
+    border-top-color: var(--color-border);
+    border-bottom-color: var(--color-border);
+    padding-top: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    padding-left: 2%;
+}
+
+.options-settings__settings-container > .options-settings__slider > .unity-slider__input > #unity-text-field {
+    color: var(--color-text-on-light);
+}
+
+.video-settings > .options-settings__settings-container > .options-settings__toggle > .unity-toggle__input {
+    justify-content: flex-end;
+}
+
+.options-settings__element-container {
+    background-color: var(--color-card);
+    margin-right: 35%;
+    padding-right: 2%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    justify-content: center;
+    padding-left: 2%;
+    margin-left: 35%;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: var(--color-border);
+    border-right-color: var(--color-border);
+    border-top-color: var(--color-border);
+    border-bottom-color: var(--color-border);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    margin-top: 15%;
+    margin-bottom: 15%;
+}
+
+.options-settings__dropdown > .unity-popup-field__input {
+    padding-left: 0;
+    padding-right: 4px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 145px;
+}
+
+.options-settings__dropdown > .unity-popup-field__input > .unity-base-popup-field__text {
+    margin-left: 0;
+    margin-right: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    color: var(--color-text-on-light);
+}
