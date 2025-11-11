@@ -1,36 +1,114 @@
-# OptionsMenu API
+# OptionsMenu API Reference
 
-`OptionsMenu` is the entry point MonoBehaviour that glues the UI, audio/video helpers, and persistence together.
+## Overview
+- **Namespace:** `TCS.Options`
+- **Assembly:** `Scripts/OptionsMenu.cs`
+- **Base Type:** `UnityEngine.MonoBehaviour`
 
-## Serialized Fields
-- `UIDocument m_uiDocument` – host document that contains `OptionsMenuElement` as its root.
-- `AudioMixer m_audioMixer` – optional but required for live audio control.
-- `VolumeProfile m_volumeProfile` – optional; needed to toggle URP Depth of Field.
+`OptionsMenu` owns the runtime lifecycle of the options UI. It coordinates the `UIDocument`,
+collects all UI Toolkit elements, instantiates `OptionSettings`, and exposes a simple entrypoint for
+opening the menu from gameplay code.
 
-## Lifecycle
+### Serialized Fields
+| Field | Type | Description |
+| --- | --- | --- |
+| `m_uiDocument` | `UIDocument` | Source of the `OptionsMenuElement`. Auto-fetched on `Awake` if omitted. |
+| `m_audioMixer` | `AudioMixer` | Mixer that contains `MASTER`, `MUSIC`, `SFX` parameters. Optional but required for audio control. |
+| `m_volumeProfile` | `VolumeProfile` | URP profile looked up for a `DepthOfField` override. Optional. |
+
+### Public Properties
+| Property | Type | Description |
+| --- | --- | --- |
+| `Instance` | `OptionsMenu` | Singleton reference set in `Awake`. |
+| `OptionsMenuElement` | `OptionsMenuElement` | Root UI Toolkit element queried from the document. |
+| `OptionElementComponents` | `OptionElementComponents` | DTO that exposes all UI controls to the settings logic. |
+| `OptionsSettings` | `OptionSettings` | Runtime orchestrator for audio/video subsystems. |
+| `SettingValues` | `SettingValues` | In-memory representation of persisted settings. |
+
+### Public Methods
+| Method | Description |
+| --- | --- |
+| `void OpenOptionMenu()` | Makes the button chooser visible by setting `CurrentOptionType = OptionType.Choices`. |
+
+### Lifecycle Notes
 1. **Awake**
-   - Enforces a singleton via `Instance`.
-   - Detaches from any parent and survives scene loads (`DontDestroyOnLoad`).
-   - Caches the `OptionsMenuElement` from the assigned `UIDocument`.
-   - Builds an `OptionElementComponents` struct that stores references to every control.
-   - Creates `SettingValues` and `OptionSettings` instances.
-
+   - Enforces singleton, detaches from any parent, and calls `DontDestroyOnLoad`.
+   - Ensures the `UIDocument` reference exists and queries the `OptionsMenuElement`.
+   - Builds `OptionElementComponents`, assigning sliders, toggles, dropdowns, mixer, and volume profile.
+   - Instantiates `SettingValues` + `OptionSettings`.
 2. **Start**
-   - Calls `OptionsSettings.Init()` to sync UI with saved data.
-   - Passes the saved resolution vector to `OptionsMenuElement.Init()` so the dropdown selects the correct entry.
-
+   - Calls `OptionsSettings.Init()` to push saved values into the UI.
+   - Passes the saved resolution into `OptionsMenuElement.Init()` so the dropdown highlights it.
 3. **OnDestroy**
-   - Disposes the UI element and option settings, which also triggers persistence.
+   - Disposes both `OptionsMenuElement` and `OptionSettings`, which in turn unregister callbacks and save data.
 
-## Public API
+### Usage Example
 ```csharp
-public static OptionsMenu Instance { get; }
-public void OpenOptionMenu();
+using TCS.Options;
+
+public class PauseMenu : MonoBehaviour {
+    public void OnOptionsPressed() {
+        OptionsMenu.Instance.OpenOptionMenu();
+    }
+}
 ```
 
-Call `OptionsMenu.Instance.OpenOptionMenu()` whenever you need to display the options UI. The method simply
-sets `CurrentOptionType = OptionType.Choices`, which makes the button stack visible.
+---
 
-## Error Handling
-- If no `UIDocument` is assigned, the script logs an error and disables itself.
-- If no `VolumeProfile` is set while Depth of Field is enabled, you will see an error but the rest of the menu keeps working.
+## OptionsMenuElement (UI Toolkit)
+- **Namespace:** `TCS.Options`
+- **Assembly:** `Scripts/OptionsMenuElement.cs`
+- **Base Type:** `UnityEngine.UIElements.VisualElement`
+
+`OptionsMenuElement` is the UXML root that shows the button chooser plus individual sections (Audio,
+Video, or any extension you add).
+
+### UXML Attributes
+| Attribute | Type | Description |
+| --- | --- | --- |
+| `current-option-type` | `OptionType` | Serialized state backing `CurrentOptionType`. Changing it toggles panes. |
+
+### Notable Members
+| Member | Description |
+| --- | --- |
+| `OptionType CurrentOptionType { get; set; }` | Enum with values `None`, `Choices`, `Audio`, `Video`. Drives visibility via `HandleMenuSelection`. |
+| `AudioSettingsElement AudioSettings { get; }` | Child element exposing audio sliders + Back button. |
+| `VideoSettingsElement VideoSettings { get; }` | Child element for resolution, fullscreen, VSync, DOF, Accept button. |
+| `void Init(Vector2 currentResolution)` | Registers callbacks for nav buttons and initializes video dropdown values. |
+| `void HandleReturnBackPressed()` | Convenience method that flips back to the button chooser. |
+| `void Dispose()` | Unregisters all callbacks to prevent leaks when the document is destroyed. |
+
+### UI Events
+- `HandleAudioPressed`, `HandleVideoPressed`, `HandleBackPressed` (private) update `CurrentOptionType`.
+- Each pane’s Back button delegates to `HandleReturnBackPressed`.
+
+---
+
+## OptionElementComponents (DTO)
+- **Namespace:** `TCS.Options`
+- **Assembly:** `Scripts/OptionElementComponents.cs`
+
+`OptionElementComponents` is a plain container that gathers every UI control the runtime helpers need.
+It is built once in `OptionsMenu.Awake` and passed into `OptionSettings`.
+
+### Static Members
+| Member | Description |
+| --- | --- |
+| `Vector2[] SupportedResolutions` | Hardcoded list of dropdown entries: 1280×720, 1920×1080, 2560×1440, 3840×2160. |
+
+### Instance Members
+| Property | Type | Description |
+| --- | --- | --- |
+| `AudioMixer AudioMixer` | `AudioMixer` | Mixer reference used by `AudioSettings`. |
+| `Slider MasterVolumeSlider` | `Slider` | UI Toolkit slider controlling the `MASTER` mixer parameter. |
+| `Slider MusicVolumeSlider` | `Slider` | Controls `MUSIC`. |
+| `Slider SfxVolumeSlider` | `Slider` | Controls `SFX`. |
+| `VolumeProfile VolumeProfile` | `VolumeProfile` | Optional URP profile for Depth of Field toggling. |
+| `DropdownField ResolutionDropdown` | `DropdownField` | Source of resolution choice strings. |
+| `Toggle FullscreenToggle` | `Toggle` | Binds to `VideoValues.Fullscreen`. |
+| `Toggle VSyncToggle` | `Toggle` | Binds to `VideoValues.VSync`. |
+| `Toggle DepthOfFieldToggle` | `Toggle` | Enables or disables URP Depth of Field. |
+| `Button AcceptChangesButton` | `Button` | Applies video settings when clicked. |
+
+Use this object when extending the system with new UI controls. Add new properties, assign them in
+`OptionsMenu.Awake`, and consume them inside your custom settings helper.

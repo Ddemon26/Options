@@ -36,7 +36,9 @@
     "items": [
       { "title": "OptionsMenu API", "path": "documents/reference/options-menu.md" },
       { "title": "OptionSettings API", "path": "documents/reference/option-settings.md" },
-      { "title": "Data Models", "path": "documents/reference/data-models.md" }
+      { "title": "Data Models", "path": "documents/reference/data-models.md" },
+      { "title": "Persistence API", "path": "documents/reference/persistence-api.md" },
+      { "title": "UI Elements API", "path": "documents/reference/ui-elements.md" }
     ]
   },
   {
