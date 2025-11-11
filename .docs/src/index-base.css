@@ -663,6 +663,47 @@ body {
     line-height: 1.5;
 }
 
+.main-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px var(--shadow-light);
+}
+
+.main-content th,
+.main-content td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-secondary);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.main-content th {
+    background-color: var(--accent-light);
+    color: var(--accent-secondary);
+    text-align: left;
+    font-weight: 600;
+}
+
+.main-content tr:nth-child(even) td {
+    background-color: var(--bg-tertiary);
+}
+
+.main-content tr:last-child td {
+    border-bottom: none;
+}
+
+.main-content table code {
+    background: transparent;
+    padding: 0;
+    border: none;
+}
+
 .main-content code {
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-secondary);
