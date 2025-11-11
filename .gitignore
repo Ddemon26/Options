@@ -89,3 +89,4 @@ AGENTS.md.meta
 *.zip
 /.claude
 /documents-template
+documents-template.meta
