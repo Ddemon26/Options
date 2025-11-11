@@ -1,0 +1,51 @@
+[
+  {
+    "title": "Overview",
+    "items": [
+      { "title": "Introduction", "path": "documents/overview/introduction.md" },
+      { "title": "Feature Highlights", "path": "documents/overview/features.md" },
+      { "title": "Roadmap", "path": "documents/overview/roadmap.md" }
+    ]
+  },
+  {
+    "title": "Setup",
+    "items": [
+      { "title": "Requirements", "path": "documents/setup/requirements.md" },
+      { "title": "Installation", "path": "documents/setup/installation.md" },
+      { "title": "Quick Start", "path": "documents/setup/quick-start.md" }
+    ]
+  },
+  {
+    "title": "UI Toolkit",
+    "items": [
+      { "title": "Layout", "path": "documents/ui/layout.md" },
+      { "title": "Styling", "path": "documents/ui/styling.md" },
+      { "title": "Extending", "path": "documents/ui/extending.md" }
+    ]
+  },
+  {
+    "title": "Systems",
+    "items": [
+      { "title": "Audio", "path": "documents/systems/audio.md" },
+      { "title": "Video", "path": "documents/systems/video.md" },
+      { "title": "Saving", "path": "documents/systems/saving.md" }
+    ]
+  },
+  {
+    "title": "Reference",
+    "items": [
+      { "title": "OptionsMenu API", "path": "documents/reference/options-menu.md" },
+      { "title": "OptionSettings API", "path": "documents/reference/option-settings.md" },
+      { "title": "Data Models", "path": "documents/reference/data-models.md" },
+      { "title": "Persistence API", "path": "documents/reference/persistence-api.md" },
+      { "title": "UI Elements API", "path": "documents/reference/ui-elements.md" }
+    ]
+  },
+  {
+    "title": "Samples & Support",
+    "items": [
+      { "title": "Menu Prefab", "path": "documents/samples/menu-prefab.md" },
+      { "title": "Troubleshooting", "path": "documents/samples/troubleshooting.md" }
+    ]
+  }
+]
