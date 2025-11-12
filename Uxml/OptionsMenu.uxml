@@ -2,5 +2,5 @@
     <Style src="project://database/Assets/_Project/Scripts/UI/Options/Uss/OptionsMenu.uss?fileID=7433441132597879392&amp;guid=4b34c9369a4a4d147af687f575c268f9&amp;type=3#OptionsMenu" />
     <Style src="project://database/Assets/_Project/Scripts/UI/Options/Uss/AudioSettings.uss?fileID=7433441132597879392&amp;guid=6fb11601f4af48e8889036ee66699ac9&amp;type=3#AudioSettings" />
     <Style src="project://database/Assets/_Project/Scripts/UI/Options/Uss/VideoSettings.uss?fileID=7433441132597879392&amp;guid=55c42292682149379e0a0f8afac925c5&amp;type=3#VideoSettings" />
-    <TCS.Options.OptionsMenuElement name="OptionsMenuElement" current-option-type="None" />
+    <TCS.Options.OptionsMenuElement name="OptionsMenuElement" current-option-type="None" style="display: flex;" />
 </ui:UXML>

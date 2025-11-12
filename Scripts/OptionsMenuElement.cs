@@ -33,7 +33,7 @@ namespace TCS.Options {
         readonly Button m_audioButton;
         readonly Button m_videoButton;
         readonly Button m_backButton;
-
+        
         readonly VisualElement m_inGameButtonContainer;
         readonly Button m_resumeButton;
         readonly Button m_settingsButton;
